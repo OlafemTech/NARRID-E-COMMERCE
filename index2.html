@@ -1,0 +1,201 @@
+<!-- Narrid Super‑App – Pre‑Launch Page (Single File)  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Narrid • Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#F1DF00;  /* Yellow */
+      --dark:#393C3C;     /* Charcoal */
+      --light:#FFFFFF;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Poppins',sans-serif;line-height:1.6;color:var(--dark);background:var(--light);}
+
+    /* ------------------ NAVIGATION ------------------ */
+    .navbar{position:fixed;top:0;left:0;width:100%;background:var(--light);box-shadow:0 2px 6px rgba(0,0,0,.08);z-index:1000;transition:all .4s ease;}
+    .nav-container{max-width:1200px;margin:0 auto;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;}
+
+    .nav-brand{font-size:1.6rem;font-weight:700;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:.4rem;}
+    .nav-brand span{display:inline-block;width:12px;height:12px;background:var(--primary);border-radius:50%;animation:pulse 2s infinite cubic-bezier(.66,0,0,1);}
+    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.5);} }
+
+    .nav-toggle{display:none;flex-direction:column;cursor:pointer;gap:5px;z-index:1100;}
+    .nav-toggle span{display:block;width:28px;height:3px;background:var(--dark);border-radius:2px;transition:all .4s ease;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);} 
+    .nav-toggle.open span:nth-child(2){opacity:0;} 
+    .nav-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);} 
+
+    .nav-menu{display:flex;align-items:center;gap:1rem;}
+    .nav-item{list-style:none;position:relative;}
+    .nav-link{display:inline-block;padding:.45rem .75rem;font-weight:600;color:var(--dark);text-decoration:none;border-radius:6px;transition:color .3s ease,background .3s ease;}
+    .nav-link:hover{color:var(--light);background:var(--primary);} 
+
+    /* Dropdown */
+    .dropdown-menu{position:absolute;left:0;top:110%;background:var(--light);min-width:220px;padding:.5rem 0;border-radius:8px;box-shadow:0 12px 28px rgba(0,0,0,.08);display:none;flex-direction:column;}
+    .dropdown-item{padding:.55rem 1.2rem;color:var(--dark);font-weight:500;text-decoration:none;transition:background .3s ease;} 
+    .dropdown-item:hover{background:var(--primary);color:var(--light);} 
+    .nav-item:hover>.dropdown-menu{display:flex;} 
+
+    /* Mobile Styles */
+    @media(max-width:768px){
+      .nav-toggle{display:flex;}
+      .nav-menu{position:fixed;right:-100%;top:0;height:100vh;width:75%;background:var(--light);flex-direction:column;align-items:flex-start;padding:5rem 1.5rem;gap:1.25rem;transition:right .45s ease;overflow-y:auto;}
+      .nav-menu.active{right:0;}
+      .nav-item.expanded>.dropdown-menu{display:flex;}
+      .dropdown-menu{position:static;box-shadow:none;padding-left:.75rem;}
+      .dropdown-item{padding:.45rem .5rem .45rem 1rem;}
+      .nav-item:hover>.dropdown-menu{display:none;}/* disable hover on mobile */
+    }
+
+    /* ------------- HERO ------------------ */
+    header{display:flex;align-items:center;justify-content:center;text-align:center;height:100vh;background:radial-gradient(circle at top left,var(--primary) 0%,var(--primary) 20%,#ffee58 60%,#fff 100%);padding:0 1rem;}
+    .hero{max-width:820px;color:var(--dark);} 
+    .hero h1{font-size:clamp(2.2rem,6vw,3.5rem);font-weight:700;margin-bottom:1rem;line-height:1.2;}
+    .hero p{font-size:clamp(1rem,2.5vw,1.25rem);margin-bottom:1.5rem;}
+    .countdown{display:flex;justify-content:center;gap:1rem;margin:1.5rem 0;}
+    .count-box{background:var(--dark);color:var(--light);padding:.75rem 1rem;border-radius:8px;min-width:70px;}
+    .count-box span{display:block;font-size:1.6rem;font-weight:700;}
+
+    /* ------------- SIGN‑UP ------------------ */
+    .signup{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:1rem;}
+    .signup input{padding:.65rem 1rem;border:2px solid var(--dark);border-radius:6px;font-size:1rem;min-width:240px;}
+    .signup button{padding:.65rem 1.25rem;background:var(--dark);color:var(--light);border:none;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;transition:background .3s ease;} 
+    .signup button:hover{background:#202121;} 
+
+    /* ------------- FOOTER ------------------ */
+    footer{padding:3rem 1rem;background:var(--dark);color:var(--light);text-align:center;}
+    footer a{color:var(--primary);text-decoration:none;font-weight:600;}
+    footer a:hover{text-decoration:underline;}
+
+  </style>
+</head>
+<body>
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="narrid.com" class="nav-brand"><span></span>Narrid</a>
+
+      <div class="nav-toggle" id="navToggle" aria-label="menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+
+      <ul class="nav-menu" id="navMenu">
+        <!-- Shop -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button">Shop</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" data-scroll-nav="0" href="#">Online Shopping</a>
+            <a class="dropdown-item" data-scroll-nav="2" href="#">Food &amp; Groceries</a>
+            <a class="dropdown-item" data-scroll-nav="4" href="#">Vending</a>
+          </div>
+        </li>
+        <!-- Services -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button">Services</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" data-scroll-nav="1" href="#">Utilities Services</a>
+            <a class="dropdown-item" data-scroll-nav="3" href="#">Delivery Services</a>
+          </div>
+        </li>
+        <!-- Travels -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button">Travels</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Flight</a>
+            <a class="dropdown-item" href="#">Hotels</a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Vendors</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Account</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ======== HERO ======== -->
+  <header>
+    <div class="hero">
+      <h1>Nigeria’s All‑in‑One Super‑App</h1>
+      <p>Shop, pay bills, order food, book flights, hail couriers &mdash; all in one friction‑less place. Narrid launches soon – be first in line.</p>
+
+      <!-- Countdown -->
+      <div class="countdown" id="countdown">
+        <div class="count-box"><span id="days">00</span>Days</div>
+        <div class="count-box"><span id="hours">00</span>Hrs</div>
+        <div class="count-box"><span id="minutes">00</span>Min</div>
+        <div class="count-box"><span id="seconds">00</span>Sec</div>
+      </div>
+
+      <!-- Sign‑up -->
+      <form class="signup" id="signupForm" action="https://example.us1.list-manage.com/subscribe/post" method="POST">
+        <input type="email" name="EMAIL" placeholder="Enter your email" required>
+        <button type="submit">Notify Me</button>
+      </form>
+    </div>
+  </header>
+
+  <!-- ======== FOOTER ======== -->
+  <footer id="contact">
+    <p>© 2025 Narrid. All rights reserved.</p>
+    <p>Questions? <a href="mailto:hello@narrid.app">hello@narrid.app</a></p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu   = document.getElementById('navMenu');
+    navToggle.addEventListener('click',()=>{
+      navToggle.classList.toggle('open');
+      navMenu.classList.toggle('active');
+    });
+    // Allow keyboard activation
+    navToggle.addEventListener('keypress',(e)=>{if(e.key==='Enter')navToggle.click();});
+
+    // Dropdown toggle for mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(link=>{
+      link.addEventListener('click',e=>{
+        if(window.innerWidth<=768){
+          e.preventDefault();
+          link.parentElement.classList.toggle('expanded');
+        }
+      });
+    });// Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown-toggle')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('expanded');
+        });
+      }
+    });
+
+    // -------- Countdown --------
+    const launchDate = new Date('2025-10-01T00:00:00+01:00').getTime(); // ⏳ set launch date here
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    const updateCountdown = ()=>{
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+      if(distance<0){
+        document.getElementById('countdown').innerHTML = '<strong>We are live!</strong>';return;}
+      const days = Math.floor(distance/(1000*60*60*24));
+      const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+      const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+      const seconds = Math.floor((distance%(1000*60))/1000);
+      daysEl.textContent    = String(days).padStart(2,'0');
+      hoursEl.textContent   = String(hours).padStart(2,'0');
+      minutesEl.textContent = String(minutes).padStart(2,'0');
+      secondsEl.textContent = String(seconds).padStart(2,'0');
+    };
+    updateCountdown();
+    setInterval(updateCountdown,1000);
+  </script>
+</body>
+</html>

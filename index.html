@@ -1,0 +1,676 @@
+<!-- Narrid Pre‑Launch Page | Responsive | Primary: #F1DF00, Secondary: #393C3C -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Narrid – Coming Soon</title>
+  <!-- Inline favicon to prevent 404 in console -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23f1df00'/%3E%3Ctext x='16' y='21' font-size='18' text-anchor='middle' fill='%23393c3c' font-family='Poppins' font-weight='700'%3EN%3C/text%3E%3C/svg%3E">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #f1df00;
+      --dark:   #393c3c;
+      --light:  #ffffff;
+      --white:  #ffffff;--black:  #000000;
+      --gray:   #808080;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- HERO ---------- */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(rgba(57,60,60,.8), rgba(0,0,0,.9)), url("https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1740&q=80") center/cover no-repeat;
+    }
+    #hero::after { /* overlay blur glow */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(241,223,0,0.3), transparent 70%);
+      pointer-events: none;
+    }
+    #hero .brand-logo {
+      max-width: 140px;
+      margin-bottom: 1rem;
+    }
+    #hero h1 {
+      font-size: clamp(2.5rem, 5vw + 1rem, 4.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--primary);
+    }
+    #hero p.lead {
+      max-width: 620px;
+      margin-inline: auto;
+      font-size: 1.05rem;
+      opacity: .95;
+    }
+    #cta-form input[type="email"] {
+      height: 56px;
+      border-radius: 8px 0 0 8px;
+      border: none;
+      padding-left: 1.25rem;
+    }
+    #cta-form button {
+      height: 56px;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      background: var(--primary);
+      color: var(--dark);
+      font-weight: 600;
+    }
+    #cta-form button:hover { filter: brightness(.95); }
+
+    /* ---------- COUNTDOWN ---------- */
+    #countdown { margin-top: 2rem; }
+    .time-box {
+      display: inline-block;
+      min-width: 70px;
+      padding: .6rem .8rem;
+      margin-inline: .3rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+    }
+    .time-box span {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .time-box small {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      opacity: .75;
+    }
+
+    /* ---------- SECTION GENERIC ---------- */
+    section {
+      padding: 80px 0;
+      position: relative;
+    }
+    .section-title {
+      margin-bottom: 3rem;
+    }
+    .section-title h2 {
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .bg-soft {
+      background: #2c2e2e;
+    }
+
+    /* ---------- FEATURES ---------- */
+    .feature-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 2rem 1.4rem;
+      transition: transform .35s ease, box-shadow .35s ease;
+      height: 100%;
+    }
+    .feature-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(0,0,0,.3);
+    }
+    .feature-icon {
+      width: 64px; height: 64px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--dark);
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+
+    /* ---------- HOW IT WORKS ---------- */
+    .step-box {
+      background: rgba(255,255,255,.05);
+      border-radius: 12px;
+      padding: 2rem 1rem;
+      transition: transform .3s ease;
+      height: 100%;
+    }
+    .step-box:hover { transform: translateY(-6px); }
+    .step-num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ---------- FAQ ---------- */
+   .faqs-section .accordion-button{
+     background:var(--dark);
+     color:var(--primary);
+     font-weight:600;
+     border:none;
+     transition:background .3s ease;
+   }
+   .faqs-section .accordion-button:not(.collapsed){
+     background:rgba(241,223,0,.08);
+     color:var(--primary);
+   }
+   .faqs-section .accordion-item{
+     border:1px solid var(--primary);
+     border-radius:8px;
+     margin-bottom:1rem;
+     overflow:hidden;
+   }
+   .faqs-section .accordion-body{background:var(--dark);color:var(--light);}
+
+   /* ---------- FOOTER ---------- */
+    footer {
+      background: var(--primary);
+      color: var(--dark);
+      padding: 2rem 0;
+    }
+    footer a { color: inherit; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <!-- nav style -->
+   <style>
+  /* ------------------ NAVIGATION ------------------ */
+  .navbar{position:fixed;top:0;left:0;width:100%;background:var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.08);z-index:1000;transition:all .4s ease;}
+  .nav-container{max-width:1200px;margin:0 auto;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;}
+
+  .nav-brand{font-size:1.6rem;font-weight:700;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:.4rem;} .nav-brand img{height:32px;width:auto;}
+  .nav-brand span{display:inline-block;width:12px;height:12px;background:var(--primary);border-radius:50%;animation:pulse 2s infinite cubic-bezier(.66,0,0,1);}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.5);} }
+
+  .nav-toggle{display:none;flex-direction:column;cursor:pointer;gap:5px;z-index:1100;}
+  .nav-toggle span{display:block;width:28px;height:3px;background:var(--dark);border-radius:2px;transition:all .4s ease;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);} 
+  .nav-toggle.open span:nth-child(2){opacity:0;} 
+  .nav-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);} 
+
+  .nav-menu{display:flex;align-items:center;gap:1rem;}
+  .nav-item{list-style:none;position:relative;}
+  .nav-link{display:inline-block;padding:.45rem .75rem;font-weight:600;color:var(--dark);text-decoration:none;border-radius:6px;transition:color .3s ease,background .3s ease;}
+  .nav-link:hover{color:#000;background:transparent;} 
+
+  /* Dropdown */
+  .dropdown-menu{position:absolute;left:0;top:110%;background:var(--dark);min-width:220px;padding:.5rem 0;border-radius:8px;box-shadow:0 12px 28px rgba(0,0,0,.08);display:none;flex-direction:column;}
+  .dropdown-item{padding:.55rem 1.2rem;color:var(--primary);font-weight:600;text-decoration:none;transition:background .3s,color .3s ease;} 
+  .dropdown-item:hover{background:var(--primary);color:var(--dark);} 
+  .nav-item:hover>.dropdown-menu{display:flex;} 
+
+  /* Mobile Styles */
+  @media(max-width:768px){
+    .nav-toggle{display:flex;}
+    .nav-menu{position:fixed;right:-100%;top:0;height:100vh;width:75%;background:var(--primary);flex-direction:column;align-items:flex-start;padding:5rem 1.5rem;gap:1.25rem;transition:right .45s ease;overflow-y:auto;}
+    .nav-menu.active{right:0;}
+    .nav-item.expanded>.dropdown-menu{display:flex;}
+    .dropdown-menu{position:static;box-shadow:none;padding-left:.75rem;}
+    .dropdown-item{padding:.45rem .5rem .45rem 1rem;}
+    .nav-item:hover>.dropdown-menu{display:none;}/* disable hover on mobile */
+  }
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .6s ease-out,transform .6s ease-out;}
+  .reveal.visible{opacity:1;transform:none;}
+
+  /* ---------- Side (video) section ---------- */
+  .side-section{padding:4rem 0;background:var(--light);color:var(--dark);} 
+  .side-grid{display:flex;flex-wrap:wrap;align-items:center;gap:2rem;}
+  .side-text{flex:1 1 320px;}
+  .side-video{flex:1 1 320px;}
+  .side-video video{width:100%;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);}
+  .slide-left{opacity:0;transform:translateX(-60px);transition:opacity .6s ease-out,transform .6s ease-out;}
+  .slide-right{opacity:0;transform:translateX(60px);transition:opacity .6s ease-out,transform .6s ease-out;}
+  .slide-left.visible,.slide-right.visible{opacity:1;transform:none;}
+  @media(max-width:768px){.side-grid{flex-direction:column;}}
+
+   /* ---------- Contact form ---------- */
+   .contact-form-section{background:var(--dark);color:var(--light);padding:4rem 0;}
+   .contact-form-section h2{color:var(--primary);font-weight:700;margin-bottom:1rem;}
+   .contact-form label{color:var(--light);font-weight:600;}
+   .contact-form .form-control{background:var(--dark);border:1px solid var(--primary);color:var(--light);} 
+   .contact-form .form-control:focus{background:var(--dark);box-shadow:0 0 0 2px var(--primary);border-color:var(--primary);} 
+   .contact-form select.form-control{padding:.5rem .75rem;background:var(--dark);color:var(--primary);border:1px solid var(--primary);}
+   .contact-form .btn-primary{background:var(--primary);color:var(--dark);border:none;font-weight:700;padding:.6rem 1.5rem;border-radius:9999px;transition:background .3s ease;} 
+   .contact-form textarea.form-control{color:var(--light);} 
+   .contact-form .btn-primary:hover{background:#e0cc00;color:#000;}
+
+   </style>
+    <!-- NAVBAR -->
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand"><img src="./img/Narrid Logo Files (1)/SVG/Use for yellow background.svg" alt="Narrid Logo">Narrid</a>
+
+      <div class="nav-toggle" id="navToggle" aria-label="menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+
+      <ul class="nav-menu" id="navMenu">
+        <!-- Shop -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button">Shop</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" data-scroll-nav="0" href="#">Online Shopping</a>
+            <a class="dropdown-item" data-scroll-nav="2" href="#">Food &amp; Groceries</a>
+            <a class="dropdown-item" data-scroll-nav="4" href="#">Vending</a>
+          </div>
+        </li>
+        <!-- Services -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button">Services</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" data-scroll-nav="1" href="#">Utilities Services</a>
+            <a class="dropdown-item" data-scroll-nav="3" href="#">Delivery Services</a>
+          </div>
+        </li>
+        <!-- Travels -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button">Travels</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Flight</a>
+            <a class="dropdown-item" href="#">Hotels</a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Vendors</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Account</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- ===== HERO ===== -->
+  <header id="hero" class="px-3">
+    <div class="container position-relative z-1">
+      <img src="https://dummyimage.com/300x100/f1df00/393c3c&text=NARRID" alt="Narrid logo" class="brand-logo" />
+      <h1>Your Everything <br> Right&nbsp;Away!</h1>
+      <p class="lead">Shop, order food, pay bills, send packages &amp; earn rewards — all in one super app built for Africa.</p>
+
+      <!-- ===== SIGN‑UP FORM ===== -->
+      <form id="cta-form" class="row g-0 justify-content-center mt-4" action="#" method="post">
+        <div class="col-10 col-sm-6 col-md-4">
+          <input type="email" class="form-control" placeholder="Enter your email" required />
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-lg" type="submit">Notify Me</button>
+        </div>
+      </form>
+      
+      <!-- ===== COUNTDOWN ===== -->
+      <div id="countdown" class="d-flex justify-content-center flex-wrap"></div>
+    </div>
+  </header>
+
+  <!-- ===== VALUE PROPOSITION ===== -->
+  <section id="value" class="text-center bg-soft reveal">
+    <div class="container">
+      <div class="section-title"><h2>Why&nbsp;Narrid?</h2></div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-cart-plus"></i></div>
+            <h5 class="fw-bold">Marketplace</h5>
+            <p>Groceries, gadgets &amp; more, delivered nationwide.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+            <h5 class="fw-bold">Food &amp; Grocery</h5>
+            <p>Order from nearby restaurants &amp; supermarkets.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <h5 class="fw-bold">Utilities</h5>
+            <p>Instant airtime, data, electricity &amp; TV payments.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-motorcycle"></i></div>
+            <h5 class="fw-bold">Logistics</h5>
+            <p>Bike, van or truck — track every delivery live.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-plane"></i></div>
+            <h5 class="fw-bold">Travel</h5>
+            <p>Book flights &amp; hotels with flexible pay‑later.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-star"></i></div>
+            <h5 class="fw-bold">Rewards</h5>
+            <p>Earn points &amp; unlock perks every time you spend.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NARRID OVERVIEW VIDEO ===== -->
+  <section class="side-section">
+    <div class="container side-grid">
+      <div class="side-text slide-left">
+        <h2 class="fw-bold mb-3">All&nbsp;Services&nbsp;— One&nbsp;App</h2>
+        <p class="lead">From shopping and food delivery to bills, travel and rewards — Narrid brings every daily service into a single, easy-to-use platform. Watch how it works in&nbsp;60&nbsp;seconds.</p>
+        <h3 class="fw-bold mt-4">Solutions</h3>
+        <ul class="list-unstyled">
+          <li><strong>Single Platform for all:</strong> With our platform you can access multiple e-commerce and tech solutions all under one platform with just one signup.</li>
+          <li><strong>Last Mile Logistics:</strong> Since logistics is the backbone of any e-commerce, our platform provides a last-mile delivery solution to make sure our customers get their items delivered in as little as 24&nbsp;hours.</li>
+          <li><strong>Access to Internet &amp; Utilities payments:</strong> Get fast, unlimited and affordable broadband internet via our hotspot zones for homes and businesses in selected locations and also pay for utilities.</li>
+          <li><strong>Trust and Customer Satisfaction:</strong> We value our customers by ensuring they are always satisfied with high-quality products and services, building long-lasting trust.</li>
+        </ul>
+      </div>
+      <div class="side-video slide-right">
+        <video src="./video/narrid-overview.mp4" autoplay muted loop playsinline controls></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section id="how" class="reveal text-center">
+    <div class="container">
+      <div class="section-title"><h2>How&nbsp;It&nbsp;Works</h2></div>
+      <div class="row g-4">
+        <div class="col-md-3 col-6">
+          <div class="step-box">
+            <div class="step-num">1</div>
+            <h6 class="mt-2 fw-bold">Download</h6>
+            <p class="small mb-0">Get the app on launch day.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="step-box">
+            <div class="step-num">2</div>
+            <h6 class="mt-2 fw-bold">Explore</h6>
+            <p class="small mb-0">Create account &amp; browse services.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="step-box">
+            <div class="step-num">3</div>
+            <h6 class="mt-2 fw-bold">Request</h6>
+            <p class="small mb-0">Choose what you need in one tap.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="step-box">
+            <div class="step-num">4</div>
+            <h6 class="mt-2 fw-bold">Track &amp; Earn</h6>
+            <p class="small mb-0">Watch progress &amp; collect rewards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQs ===== -->
+  <section id="faqs" class="faqs-section bg-soft reveal">
+    <div class="container">
+      <div class="section-title text-center"><h2>FAQs</h2></div>
+      <div class="accordion accordion-flush" id="faqAccordion">
+        <!-- Item 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="fq1-h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq1" aria-expanded="false" aria-controls="fq1">
+              What is Narrid?
+            </button>
+          </h2>
+          <div id="fq1" class="accordion-collapse collapse" aria-labelledby="fq1-h" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Narrid is an all-in-one super-app that lets you shop, order food, pay bills, send packages and earn rewards — bringing every daily service into a single, easy-to-use platform.
+            </div>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="fq2-h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq2" aria-expanded="false" aria-controls="fq2">
+              When will the app launch?
+            </button>
+          </h2>
+          <div id="fq2" class="accordion-collapse collapse" aria-labelledby="fq2-h" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              We are gearing up for launch soon. Keep an eye on the countdown above and join the early-access list through the Notify Me form to be first to know when we go live.
+            </div>
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="fq3-h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq3" aria-expanded="false" aria-controls="fq3">
+              How do I sign up early?
+            </button>
+          </h2>
+          <div id="fq3" class="accordion-collapse collapse" aria-labelledby="fq3-h" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Simply enter your email in the hero section’s <strong>Notify Me</strong> form. We’ll send you an invite as soon as the app hits the stores.
+            </div>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="fq4-h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq4" aria-expanded="false" aria-controls="fq4">
+              Where will Narrid be available?
+            </button>
+          </h2>
+          <div id="fq4" class="accordion-collapse collapse" aria-labelledby="fq4-h" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Narrid’s services will roll out across major Nigerian cities first — then expand nationwide and to other African markets.
+            </div>
+          </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="fq5-h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq5" aria-expanded="false" aria-controls="fq5">
+              Which payment methods can I use?
+            </button>
+          </h2>
+          <div id="fq5" class="accordion-collapse collapse" aria-labelledby="fq5-h" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              At launch you’ll be able to pay with cards, bank transfers and USSD. Flexible pay-later options will also be available on select services.
+            </div>
+          </div>
+        </div>
+        <!-- Item 6 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="fq6-h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fq6" aria-expanded="false" aria-controls="fq6">
+              How do Narrid Rewards work?
+            </button>
+          </h2>
+          <div id="fq6" class="accordion-collapse collapse" aria-labelledby="fq6-h" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              You earn points for every transaction on Narrid. Points can be redeemed for discounts, free delivery and partner perks.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT US FORM ===== -->
+  <section id="contact-us" class="contact-form-section reveal">
+    <div class="container">
+      <div class="section-title text-center"><h2>Contact&nbsp;Us</h2></div>
+      <form id="contactUsForm" class="contact-form mx-auto" style="max-width:700px;" novalidate>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name*</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="col-md-6">
+            <label for="gender" class="form-label">Gender*</label>
+            <select id="gender" class="form-control" required>
+              <option value="" selected disabled>Choose...</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email*</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="col-md-6">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address">
+          </div>
+          <div class="col-md-6">
+            <label for="category" class="form-label">Category*</label>
+            <select id="category" class="form-control" required>
+              <option value="" disabled selected>Select a category</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Services">Services</option>
+              <option value="Travel">Travel</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="subcategory" class="form-label">Sub-Option*</label>
+            <select id="subcategory" class="form-control" required>
+              <option value="" disabled selected>Select sub-option</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" rows="4" class="form-control" placeholder="Tell us more..."></textarea>
+          </div>
+          <div class="col-12 text-center mt-3">
+            <button type="submit" class="btn btn-primary">Send&nbsp;Message</button>
+          </div>
+        </div>
+        <p id="formAlert" class="mt-3 small"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="bg-soft text-center reveal">
+    <div class="container">
+      <div class="section-title"><h2>Stay&nbsp;Connected</h2></div>
+      <p class="mb-4">Questions or partnership ideas? Reach us any time.</p>
+      <div class="row justify-content-center gy-4">
+        <div class="col-md-4">
+          <h6><i class="fas fa-envelope text-warning me-2"></i>Email</h6>
+          <p class="small mb-0">habeeboluwafemi27@gmail.com</p>
+        </div>
+        <div class="col-md-4">
+          <h6><i class="fas fa-phone text-warning me-2"></i>Call</h6>
+          <p class="small mb-0">+234&nbsp;83101&nbsp;7099 | +234&nbsp;906582&nbsp;1064<p class="small mb-0">Available 24/7</p>
+        </div>
+        <div class="col-md-4">
+          <h6><i class="fas fa-location-dot text-warning me-2"></i>Office</h6>
+          <p class="small mb-0">No 10 Gimbiya Street, Area 11 Garki,&nbsp;|&nbsp;Abuja, Nigeria</p>
+        </div>
+      </div>
+      <div class="mt-4 d-flex justify-content-center gap-3">
+        <a href="https://x.com/Narrid_?s=08" aria-label="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+        <a href="https://www.instagram.com/narridhq?igsh=eGd3c2Fnd3o4MHZj" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="https://www.facebook.com/share/1HasxUJ4Wm/?mibextid=qi2Omg" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="https://www.linkedin.com/company/narrid/" aria-label="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="text-center">
+    <div class="container">
+      <small>&copy; <span id="year"></span> Narrid Technologies. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- ===== NAVBAR ===== -->
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu   = document.getElementById('navMenu');
+    navToggle.addEventListener('click',()=>{
+      navToggle.classList.toggle('open');
+      navMenu.classList.toggle('active');
+    });
+    // Allow keyboard activation
+    navToggle.addEventListener('keypress',(e)=>{if(e.key==='Enter')navToggle.click();});
+
+    // Dropdown toggle for mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(link=>{
+      link.addEventListener('click',e=>{
+        if(window.innerWidth<=768){
+          e.preventDefault();
+          link.parentElement.classList.toggle('expanded');
+        }
+      });
+    });// Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown-toggle')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('expanded');
+        });
+      }
+    });
+
+    // Year auto‑update
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Countdown − set your launch date here (YYYY-MM-DD)
+    const launchDate = new Date("2025-09-01T00:00:00Z").getTime();
+    const cdEl       = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now   = Date.now();
+      const diff  = launchDate - now;
+      if (diff < 0) { cdEl.innerHTML = "<h5 class='text-warning fw-bold'>We are live! 🎉</h5>"; return; }
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+      const s = Math.floor((diff % (1000*60)) / 1000);
+      cdEl.innerHTML = `<div class="time-box"><span>${d}</span><small>Days</small></div>
+                        <div class="time-box"><span>${h}</span><small>Hours</small></div>
+                        <div class="time-box"><span>${m}</span><small>Min</small></div>
+                        <div class="time-box"><span>${s}</span><small>Sec</small></div>`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Reveal on scroll
+    // add reveal class to each feature card inside #value section
+    document.querySelectorAll('#value .feature-item').forEach(el => el.classList.add('reveal'));
+
+    const revealEls = document.querySelectorAll('.reveal, .slide-left, .slide-right');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible'); // allow animation to replay when re-entering
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+  <script src="./js/forms.js"></script>
+</body>
+</html>
